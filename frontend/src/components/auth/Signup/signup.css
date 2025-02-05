@@ -1,0 +1,130 @@
+.twitter{
+    min-height: 90vh;
+}
+.content{
+    width: 300px;
+}
+main .logosection .logo{
+    width: 45px;
+    height: 50%;
+    margin: 15px 0;
+}
+.signup h1{
+    font-size: 40px;
+    margin: 40px 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+}
+.google,.apple, .createaccount, .signin{
+    width: 100%;
+    padding: 7px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.google{
+    margin: 15px 0 5px 0;
+}
+.google a{
+    text-decoration: none;
+    color: gray;
+}
+.apple{
+    margin: 0 0 5px 0;
+}
+.apple .appleicon{
+    margin-left: -12px;
+    margin-right: 8px;
+}
+.apple a{
+    text-decoration: none;
+    color: black;
+}
+.createaccount{
+    background-color: rgb(0, 179, 255);
+}
+.createaccount a{
+    color: white;
+    text-decoration: none;
+}
+.terms small{
+    font-size: 11px;
+}
+.terms small a{
+    color: rgb(0, 179, 255);
+    text-decoration: none;
+}
+.twitter h5{
+    margin-top: 40px;
+    font-size: 18px;
+}
+.signin{
+    background-color: black;
+    border: 1px solid white;
+}
+.signin a{
+    color: rgb(0, 179, 255);
+    text-decoration: none;
+}
+.line{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.line p{
+    margin: 0 10px;
+    margin-bottom: 5px;
+}
+.line div{
+    height: 1px;
+    width: 130px;
+    background-color: rgb(50, 51, 52);
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 80px;
+    line-height: 12px;
+}
+.footer a, span{
+    text-decoration: none;
+    color: gray;
+    font-size: 12px;
+}
+@media screen and (min-width:576px){
+    .signup h1{
+        font-size: 56px;
+    }
+}
+@media screen and (min-width:992px){
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main .logosection{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+    main .logosection .logo{
+        width: 300px;
+        height: 50%;
+    }
+    .twitter{
+        width: 100%;
+    }
+    .twitter main{
+        min-height: 80vh;
+    }
+    .signup h1{
+        font-size: 70px;
+    }
+}
+
+

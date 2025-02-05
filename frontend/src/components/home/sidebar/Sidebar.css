@@ -1,0 +1,68 @@
+.sidebar {
+    border-right: 1px solid rgb(88, 85, 85);
+}
+.sideBarcontent{
+    width: 230px;
+    margin: 15px  10px 0 130px;
+
+}
+.sidebar li{
+    padding: 8px 0 8px 10px;
+    display: flex;
+    align-items: center;
+}
+.sidebar li span{
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+.sidebar .logo:hover{
+    cursor: pointer;
+}
+.sidebar li:hover{
+    cursor: pointer;
+    background: rgb(22, 22, 22);
+    border-radius: 30px;
+}
+.sidebar .profile{
+    width: 235px;
+    border: none;
+}
+.sidebar .profile:hover{
+    cursor: pointer;
+    background: rgb(22, 22, 22);
+    border-radius: 50px;
+}
+@media screen and (max-width:1100px) {
+    .sideBarcontent{
+        width: 80px;
+        margin: 5px;
+        padding: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .sidebar li span{
+        display: none;
+    }
+    .sidebar li:hover{
+        background: rgb(22, 22, 22);
+    }
+    .sidebar .profile .title,.more{
+        display: none;
+    }
+    .sidebar .profile{
+        width: 100px;
+        border: none;
+    }
+    
+}
+@media screen and (max-width:630px) {
+    .sideBarcontent{
+        width: 100%;
+    }
+    .sidebar .profile{
+        display: none;
+    }
+}

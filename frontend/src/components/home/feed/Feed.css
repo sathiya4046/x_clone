@@ -1,0 +1,93 @@
+.feed{
+    width: 650px;
+    border-right: 1px solid rgb(88, 85, 85);
+}
+.feed .follow{
+    border-bottom:  1px solid rgb(88, 85, 85);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    background-color: black;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.feed .follow .feed__header{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+.feed .follow .feed__header .forYou,.following{
+    padding: 15px;
+    transition: 0.2s;
+}
+.feed .follow .feed__header .forYou:hover,.following:hover{
+    background-color: rgb(30, 30, 30);
+    height: fit-content;
+}
+.feed .underline{
+    position: absolute;
+    top: 50px;
+    left: 140px;
+    width: 50px;
+    height: 5px;
+    background-color: rgb(35, 149, 255);
+    border-radius: 20px;
+}
+.feed .formArea{
+    border-bottom:  1px solid rgb(88, 85, 85);
+    height: fit-content;
+    cursor: pointer;
+}
+.formArea .image{
+    padding: 20px;
+}
+
+.formArea form textarea{
+    width: 100%;
+    background-color: black;
+    border: none;
+    color: white;
+}
+.formArea form textarea:focus{
+    outline: none;
+}
+@media screen and (max-width:775px) {
+    .feed{
+        width: 500px;
+    }
+    .feed header{
+        width: 500px;
+    }
+    .feed .underline{
+        left: 90px;
+        width: 65px;
+    }
+    
+}
+@media screen and (max-width:630px) {
+    .feed{
+        width: 85vw;
+    }
+    .feed header{
+        width: 100%;
+    }
+    .feed .underline{
+        left: 100px;
+    }
+    
+}
+
+@media screen and (max-width:480px) { 
+    .feed{
+        width: 85vw;
+    }
+    .feed header{
+        width: 100%;
+    } 
+    .feed .underline{
+        left: 60px;
+    }
+}

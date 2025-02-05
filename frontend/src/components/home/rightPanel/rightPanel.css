@@ -1,0 +1,46 @@
+
+
+.rightPanel__input {
+    width: 350px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(47, 45, 45);
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px 15px 10px;
+    position: fixed;
+    top: 0;
+    background-color: black;
+}
+.rightPanel__input:hover,
+.rightPanel__input:focus{
+    border: 2px solid rgb(12, 144, 233);
+}
+.rightPanel__input input{
+    width: 100%;
+    background-color: black;
+    outline: none;
+    border: none;
+    color: white;
+}
+.rightPanelContainer{
+    border: 1px solid rgb(47, 45, 45);
+    border-radius: 15px;
+    width: 350px;
+    padding: 15px;
+    margin: 15px;
+    height: fit-content;
+    position: fixed;
+    top: 50px;
+}
+.rightPanel button{
+    width: 100px;
+    height: 40px;
+}
+
+@media screen and (max-width:1400px) {
+    .rightPanel{
+        display: none;
+    }
+    
+}

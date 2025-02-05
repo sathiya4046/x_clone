@@ -1,0 +1,102 @@
+.profile{
+    width: 650px;
+    border-right: 1px solid rgb(88, 85, 85);
+    position: relative;
+}
+
+.nameBoard{
+    width: fit-content;
+    height: fit-content;
+}
+.coverImg{
+    height: 200px;
+}
+.profileArea{
+    height: 100px;
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileArea img{
+    position: absolute;
+    top: 200px;
+    left: 30px;
+    border: 6px solid black;
+}
+.profileArea button{
+    position: absolute;
+    top: 300px;
+    left: 500px;
+    width: 100px;
+}
+.profileDetails{
+    height: fit-content;
+}
+.profileDetails span{
+    font-size: 14px;
+}
+
+/*  */
+
+.header{
+    border-bottom:  1px solid rgb(88, 85, 85);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    background-color: black;
+    height: 50px;
+    position: relative;
+}
+.header .feed__header{
+    width: 500px;
+    text-align: center;
+    position: relative;
+}
+.header .feed__header .posts,.likes{
+    padding: 15px;
+    transition: 0.2s;
+}
+.header .feed__header .posts:hover,.likes:hover{
+    background-color: rgb(30, 30, 30);
+}
+.header .underline{
+    position: absolute;
+    top: 50px;
+    left: 135px;
+    width: 60px;
+    height: 5px;
+    background-color: rgb(35, 149, 255);
+    border-radius: 20px;
+}
+@media screen and (max-width:775px) {
+    .profile{
+        width: 85vw;
+    }
+    .profileArea button{
+        position: absolute;
+        top: 300px;
+        left: 350px;
+    }   
+}
+@media screen and (max-width:630px) {
+    .profileArea button{
+        position: absolute;
+        top: 300px;
+        left: 300px;
+    }   
+    .header .underline{
+        left: 100px;
+    }
+}
+@media screen and (max-width:450px) {
+    .profileArea button{
+        position: absolute;
+        top: 300px;
+        left: 230px;
+    }   
+    .header .underline{
+        left: 55px;
+    }
+}
