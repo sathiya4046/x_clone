@@ -30,7 +30,8 @@ app.use(express.json({
   limit: "5mb" //default 100kb
 }))
 app.use(cors({
-  origin:"http://localhost:3000",
+  // origin:"http://localhost:3000",
+  origin:"https://x-clone-dnl2.onrender.com",
   credentials:true,
   methods:["POST","GET","PUT","DELETE"]
 }))
