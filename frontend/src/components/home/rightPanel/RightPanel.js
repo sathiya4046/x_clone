@@ -1,12 +1,12 @@
 import React from 'react'
 import "./rightPanel.css"
-import SearchIcon from "@material-ui/icons/Search"
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { baseUrl } from '../../../constant/url'
 import { Link } from 'react-router-dom'
 import image from '../../../images/avatar.webp'
 import useFollow from '../../../hooks/useFollow'
+import { FaSearch } from "react-icons/fa";
 
 function RightPanel() {
 
@@ -29,7 +29,7 @@ function RightPanel() {
     return (
         <div className="rightPanel col" >
             <div className="rightPanel__input">
-                <SearchIcon className="text-secondary" />
+                <FaSearch className="text-secondary" />
                 <input placeholder="Search" type="text" />
             </div>
             <div className="rightPanelContainer">
