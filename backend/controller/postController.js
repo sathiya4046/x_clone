@@ -6,8 +6,9 @@ import {v2 as cloudinary} from 'cloudinary'
 export const createPost = async (req,res)=>{
 
     const {text} = req.body
-    let {img} = req.body
+    let img = req.body.img
     const id = req.user.id
+    const resourceType = req.body.resource_type
     try{
       const user = await User.findOne({_id:id})
       if(!user){
@@ -17,14 +18,17 @@ export const createPost = async (req,res)=>{
         return res.status(400).json({error:"Post must have text or image"})
       }
       if(img){
-        const uploadResponse = await cloudinary.uploader.upload(img)
+        const uploadResponse = await cloudinary.uploader.upload(img,{
+          resource_type:resourceType
+        })
         img = uploadResponse.secure_url
       }
   
       const newPost = await Post({
         user: id,
         text,
-        img
+        img,
+        resourceType
       })
   
       await newPost.save()

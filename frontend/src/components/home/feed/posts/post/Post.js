@@ -131,15 +131,25 @@ const Post = ({post,index}) => {
                             </div>
                         </div>
                 </div>
-                                    {
-                                        isMypost && 
-                                        <button className='btn text-light me-3 fs-4' onClick={()=>handleDelete(post._id)}><MdDeleteOutline className='text-danger'/></button>
-                                    }
+                        {
+                            isMypost && 
+                            <MdDeleteOutline onClick={()=>handleDelete(post._id)} className='text-danger me-3 fs-3'/>
+                        }
             </div>
                             <div>
                                 <div className='m-4'>
                                     <p>{post.text}</p>
-                                    { post.img && <img src={post.img} alt="postimage" width="100%" height={420} className='rounded' />}
+                                    {post.img && post.resourceType === "video" &&
+                                        <video width='100%' height={300} controls>
+                                        <source src={post.img} type='video/mp4' />
+                                        Your browser does not support the video tag.
+                                        </video>                                        
+                                    }
+                                    {
+                                        post.img && post.resourceType === "image" &&
+                                        <img src={post.img} alt="postimage" width="100%" height={350} className='rounded'/>
+                                    }
+                                    
                                     
                                 </div>
                                 <div className='d-flex align-items-center  justify-content-between my-3 mx-5 fs-5'>

@@ -27,7 +27,7 @@ const port = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 app.use(express.json({
-  limit: "5mb" //default 100kb
+  limit: "50mb" //default 100kb
 }))
 app.use(cors({
   // origin:"http://localhost:3000",

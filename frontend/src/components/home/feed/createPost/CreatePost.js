@@ -16,7 +16,9 @@ const CreatePost = () => {
     const [text,setText] = useState('')
     const [popover,setpopover] = useState(true)
     const [cropImg,setCropImage] = useState(true)
-    const [croppedImage, setCroppedImage] = useState(null);
+    const [croppedImage, setCroppedImage] = useState({});
+    const [fileType, setFileType] = useState(null);
+    const [file, setFile] = useState(null);
 
     const cropperRef = useRef(null);
 
@@ -26,21 +28,50 @@ const CreatePost = () => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        if (file) {
+        setFile(file);
+        setFileType(file.type.startsWith('image') ? 'image' : 'video');
+
+        if (file.type.startsWith("image")) {
           const reader = new FileReader();
-          reader.onloadend = () => setImage(reader.result);
+          reader.onload = () => setImage(reader.result);
           reader.readAsDataURL(file);
+        }else {
+            setImage(URL.createObjectURL(file));
         }
     };
 
     const handleCrop = () => {
         setCropImage(false)
         setpopover(false)
-        if (cropperRef.current) {
+        if (cropperRef.current && fileType === 'image') {
           const croppedCanvas = cropperRef.current.cropper.getCroppedCanvas();
-          const croppedDataUrl = croppedCanvas.toDataURL();
-          setCroppedImage(croppedDataUrl);
+          const dataUrl = croppedCanvas.toDataURL();
+          const resourceType = 'image';
+          setCroppedImage({dataUrl,resourceType});
         }
+    };
+
+    const uploadVideo = async ()=>{
+        setCropImage(false)
+        setpopover(false)
+        if(fileType === 'video'){
+            const videoBlob = await fetch(image).then((r) => r.blob());
+            const videoFile = new File([videoBlob], file.name, { type: file.type });
+            const dataUrl = await convertVideoToDataURL(videoFile);
+            const resourceType = 'video';
+            setCroppedImage({dataUrl,resourceType});
+        }
+    }
+
+    const convertVideoToDataURL = (videoFile) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve(reader.result);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(videoFile);
+        });
       };
     
 
@@ -53,7 +84,8 @@ const CreatePost = () => {
             try{
                 const formData = {
                     img : data.image,
-                    text : data.text
+                    text : data.text,
+                    resource_type:data.resource_type
                 }
                 const res = await axios.post(`${baseUrl}/api/posts/create`,formData,{withCredentials:true})
                 const response = res.data
@@ -78,7 +110,7 @@ const CreatePost = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        createPost({text:text,image:croppedImage});
+        createPost({text:text,image:croppedImage?.dataUrl,resource_type: croppedImage?.resourceType});
     }
   return (
     <div>
@@ -96,9 +128,17 @@ const CreatePost = () => {
                                     value={text}
                                     onChange={(e)=>setText(e.target.value)}
                                 ></textarea>
-                                {croppedImage && !cropImg && (
+                                {croppedImage?.resourceType === "image" && !cropImg && (
                                                 <div>
-                                                <img src={croppedImage} alt="Cropped" style={{ width: '95%', height: '50vh' }} className='rounded' />
+                                                <img src={croppedImage.dataUrl} alt="Cropped" style={{ width: '95%', height: '50vh' }} className='rounded' />
+                                                </div>
+                                )}
+                                {croppedImage?.resourceType === "video" && !cropImg && (
+                                                <div>
+                                                <video width='100%' height={280} controls>
+                                                <source src={croppedImage.dataUrl} type='video/mp4' />
+                                                Your browser does not support the video tag.
+                                                </video>
                                                 </div>
                                 )}
                             </div>
@@ -109,6 +149,7 @@ const CreatePost = () => {
                                         <input 
                                             onChange={handleFileChange} 
                                             type="file" 
+                                            accept="image/*,video/*"
                                             name='img'
                                             id='postimage' 
                                             hidden
@@ -129,18 +170,29 @@ const CreatePost = () => {
                                             }}
                                         >
                                             <div className='text-center' style={{ padding: '15px', width: '100%',height:"60vh" }}>
-                                            {image && cropImg && (
+                                            {image && cropImg && fileType ==='image' && (
                                                 <div>
-                                                <Cropper
-                                                    ref={cropperRef}
-                                                    src={image}
-                                                    style={{ width: '50vh', height: '50vh' }}
-                                                    aspectRatio={16/9}
-                                                    guides={false}
-                                                />
-                                                <Button onClick={handleCrop} variant="contained" color="primary" style={{ marginTop: '10px' }}>
-                                                    Crop Image
-                                                </Button>
+                                                    <Cropper
+                                                        ref={cropperRef}
+                                                        src={image}
+                                                        style={{ width: '50vh', height: '50vh' }}
+                                                        aspectRatio={16/9}
+                                                        guides={false}
+                                                    />
+                                                    <Button onClick={handleCrop} variant="contained" color="primary" style={{ marginTop: '10px' }}>
+                                                        Crop Image
+                                                    </Button>
+                                                </div>
+                                            )}
+                                            {image && fileType === 'video' && (
+                                                <div>
+                                                    <video width="100%" height="380" controls>
+                                                    <source src={image} type={file.type} />
+                                                    Your browser does not support the video tag.
+                                                    </video>
+                                                    <Button onClick={uploadVideo} variant="contained" color="primary" style={{ marginTop: '10px' }}>
+                                                    Upload
+                                                    </Button>
                                                 </div>
                                             )}
                                             </div>

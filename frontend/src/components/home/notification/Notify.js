@@ -63,14 +63,14 @@ const Notify = () => {
 				{notifications?.length === 0 && <div className='text-center p-4 fw-bold'>No notifications 🤔</div>}
 				{notifications?.map((notification,index) => (
 					<div className="p-3" key={index}>
-							<Link className="text-decoration-none" to={`/profile/${notification.from.username}`}>
+							<Link className="text-decoration-none" to={`/profile/${notification?.from?.username}`}>
 								<div className="d-flex align-items-end gap-3 text-light">
-									<img className='rounded-pill' src={notification.from.profileImg || "/frontend/src/images/avatar.webp"} alt="notify" width={50} height={50} />
-									<h6>@{notification.from.username} 
+									<img className='rounded-pill' src={notification?.from?.profileImg || "/frontend/src/images/avatar.webp"} alt="notify" width={50} height={50} />
+									<h6>@{notification?.from?.username} 
 										<span className="ms-2">
-											{notification.type === "follow" && "followed you"}
-											{notification.type === "like" && "liked your post"}
-											{notification.type === "comment" && "commented your post"}
+											{notification?.type === "follow" && "followed you"}
+											{notification?.type === "like" && "liked your post"}
+											{notification?.type === "comment" && "commented your post"}
 										</span>
 									</h6>
 								</div>
